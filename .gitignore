@@ -1,4 +1,5 @@
 /bin/*
+/.ccls-cache/
 
 # Prerequisites
 *.d

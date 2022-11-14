@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 void swap(int *x, int *y);
 void bubble_sort(int *arr, size_t len);
@@ -82,7 +83,7 @@ bubble_sort_optimized(int *arr, size_t len)
 		int newlen = 0;
 		for (size_t i = 1; i <= len; ++i) {
 			if (arr[i - 1] > arr[i]) {
-				swap(&arr[i], &arr[i + 1]);
+				swap(&arr[i], &arr[i - 1]);
 				newlen = i;
 			}
 		}
@@ -117,8 +118,20 @@ main(int argc, char **argv)
          * if needed.
          */
 
-        bubble_sort(arr, len);
-	bubble_sort_test(arr, len);
-	bubble_sort_ignore_last(arr, len);
+        //bubble_sort(arr, len);
+	//bubble_sort_test(arr, len);
+	//bubble_sort_ignore_last(arr, len);
+	
+	for (size_t i = 0; i < len; i++) printf("%d ", arr[i]);
+	printf("\n");
+
 	bubble_sort_optimized(arr, len);
+
+	for (size_t i = 0; i < len; i++) printf("%d ", arr[i]);
+	printf("\n");
+
+	int sorted = 1;
+	for (size_t i = 2; i < len; i++) if (arr[i-1]<arr[i-2]) { sorted = 0; break; }
+
+	printf("SORTED? %s\n", sorted ? "TRUE" : "FALSE");
 }
